@@ -6,6 +6,7 @@
 
 // Incluir configuración de base de datos
 require_once '../config/database.php';
+require_once '../config/cors.php';
 
 // Configurar headers para API REST
 header('Content-Type: application/json');
