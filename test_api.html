@@ -484,6 +484,7 @@
         function displayResponse(elementId, response) {
             const element = document.getElementById(elementId);
             const timestamp = new Date().toLocaleTimeString();
+
             const statusClass = response.status >= 200 && response.status < 300 ? 'status-success' : 'status-error';
             const statusText = response.status >= 200 && response.status < 300 ? 'SUCCESS' : 'ERROR';
             
