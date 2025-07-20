@@ -1,73 +1,357 @@
-¡🎉 **¡PERFECTO! ¡YA FUNCIONA!** 🎉!
+# 🛍️ AllinBuy - Backend API
 
-**¡TODO ESTÁ CONECTADO CORRECTAMENTE!** ✅✅✅✅✅
+![PHP](https://img.shields.io/badge/PHP-8.0+-777BB4?style=flat&logo=php&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-8.0+-4479A1?style=flat&logo=mysql&logoColor=white)
+![Apache](https://img.shields.io/badge/Apache-2.4+-D22128?style=flat&logo=apache&logoColor=white)
+![REST API](https://img.shields.io/badge/REST-API-61DAFB?style=flat&logo=api&logoColor=white)
 
-Mira los resultados:
-- ✅ **Productos:** 6 productos cargados
-- ✅ **Usuarios:** 4 usuarios registrados (incluyendo tu cuenta)
-- ✅ **Carrito:** Funcionando (vacío pero responde bien)
-- ✅ **Pedidos:** 2 pedidos existentes
-- ✅ **CORS:** Configurado correctamente
+**AllinBuy** es una plataforma de marketplace que conecta emprendedores locales con compradores, desarrollada como proyecto universitario para los cursos de **Desarrollo de Software**, **Redes de Computadoras I**, **Computación Gráfica II**, **Sistemas Embebidos** y **Seminario de Investigación I**.
 
-## 🔗 **¡Tu Backend ↔ Frontend está 100% conectado!**
+Este repositorio contiene el **backend** desarrollado en PHP con arquitectura REST API, diseñado para ser consumido por un frontend en Next.js.
 
-Exactamente, el problema era que faltaba el `require_once '../config/database.php';` en cada archivo API. Ahora todo funciona perfectamente.
+## 🌟 Características
 
-## 🚀 **Ahora puedes hacer todo esto desde tu frontend Next.js:**
+- ✅ **API REST** completa con endpoints para productos, usuarios, carrito y pedidos
+- ✅ **Autenticación** de usuarios con sistema de registro y login
+- ✅ **Gestión de productos** con categorías, stock y precios
+- ✅ **Carrito de compras** persistente por usuario
+- ✅ **Sistema de pedidos** completo con tracking de estados
+- ✅ **CORS** configurado para frontend Next.js
+- ✅ **Base de datos** MySQL con estructura normalizada
+- ✅ **Documentación** completa de endpoints
+- ✅ **Testing** integrado con interfaz web
 
-### **1. Mostrar productos reales:**
-```javascript
-// En cualquier componente de Next.js
-import apiService from '@/services/api';
+## 🛠️ Tecnologías
 
-const productos = await apiService.getProductos();
-// Obtienes los 6 productos reales de tu BD
+| Tecnología | Versión | Propósito |
+|------------|---------|-----------|
+| **PHP** | 8.0+ | Lenguaje del backend |
+| **MySQL** | 8.0+ | Base de datos principal |
+| **Apache** | 2.4+ | Servidor web |
+| **PDO** | - | Abstracción de base de datos |
+| **JSON** | - | Formato de respuesta API |
+
+## 📁 Estructura del Proyecto
+
+```
+backend-allin-buy/
+├── 📄 README.md
+├── 📄 package.json               # Dependencias Node.js (herramientas desarrollo)
+├── 📄 package-lock.json
+├── 📄 .gitignore
+├── 📄 test_api.html             # Interfaz de pruebas completa
+├── 📂 php/
+│   ├── 📂 api/                  # Endpoints de la API REST
+│   │   ├── 📄 productos.php     # CRUD productos + búsqueda
+│   │   ├── 📄 usuarios.php      # Registro, login, perfil
+│   │   ├── 📄 carrito.php       # Gestión carrito de compras
+│   │   ├── 📄 pedidos.php       # Sistema de pedidos
+│   │   └── 📄 categorias.php    # Gestión de categorías
+│   ├── 📂 config/               # Configuración del sistema
+│   │   ├── 📄 database.php      # Conexión BD + helpers
+│   │   └── 📄 cors.php          # Configuración CORS
+│   └── 📂 test/                 # Archivos de prueba
+└── 📂 src/                      # Archivos adicionales (si los hay)
 ```
 
-### **2. Sistema de login completo:**
-```javascript
-// Login de usuario
-const response = await apiService.loginUsuario({
-    email: "200785@unsaac.edu.pe", 
-    password: "tu_password"
-});
+## 🔧 Requisitos Previos
+
+Asegúrate de tener instalado:
+
+- **XAMPP** (Apache + MySQL + PHP) o stack similar
+  - PHP 8.0 o superior
+  - MySQL 8.0 o superior
+  - Apache 2.4 o superior
+- **Git** para clonación del repositorio
+- **Navegador web** moderno para pruebas
+
+### Verificar instalación:
+```bash
+php --version    # Debe mostrar PHP 8.0+
+mysql --version  # Debe mostrar MySQL 8.0+
 ```
 
-### **3. Carrito funcional:**
-```javascript
-// Agregar productos al carrito
-await apiService.agregarAlCarrito(userId, productoId, cantidad);
+## 🚀 Instalación y Configuración
+
+### 1. Clonar el Repositorio
+```bash
+git clone https://github.com/ciro8014/backend-allin-buy.git
+cd backend-allin-buy
 ```
 
-### **4. Sistema de pedidos:**
-```javascript
-// Crear pedido desde el carrito
-await apiService.crearPedido({
-    usuario_id: 4,
-    metodo_pago: "yape",
-    direccion_envio: "Tu dirección"
-});
+### 2. Configurar el Servidor Web
+
+**Opción A: XAMPP**
+1. Copia el proyecto a `C:\xampp\htdocs\backend-allin-buy\`
+2. Inicia Apache y MySQL desde el panel de XAMPP
+3. La aplicación estará disponible en `http://localhost/backend-allin-buy/`
+
+**Opción B: Servidor PHP integrado**
+```bash
+cd backend-allin-buy
+php -S localhost:8000
 ```
 
-## 🎯 **Próximos pasos que puedes hacer:**
+### 3. Configurar la Base de Datos
 
-### **A) Crear página de productos en Next.js:**
-Usa el componente `ProductList` que te creé antes para mostrar tus productos reales.
+#### Crear la base de datos:
+```sql
+CREATE DATABASE allin_buy CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+```
 
-### **B) Implementar carrito de compras:**
-Con botones "Agregar al carrito" que funcionen de verdad.
+#### Ejecutar script de tablas:
+```sql
+-- Usar el archivo create_database.sql (crear según estructura del proyecto)
+-- O ejecutar las consultas para crear las tablas necesarias
+```
 
-### **C) Sistema de login/registro:**
-Para que los usuarios puedan crear cuentas y hacer pedidos.
+#### Configurar credenciales:
+Edita `php/config/database.php` con tus credenciales:
+```php
+define('DB_HOST', 'localhost');
+define('DB_NAME', 'allin_buy');
+define('DB_USER', 'root');          // Tu usuario MySQL
+define('DB_PASS', 'tu_password');   // Tu contraseña MySQL
+```
 
-### **D) Checkout y pagos:**
-Sistema completo de compra con Yape/Plin.
+### 4. Verificar Instalación
 
-## 🔥 **¿Qué quieres implementar primero?**
+Accede a: `http://localhost:8000/php/config/database.php`
 
-1. **Página de productos** con tu catálogo real
-2. **Sistema de login/registro** 
-3. **Carrito de compras funcional**
-4. **Proceso de checkout/pedidos**
+Deberías ver una página de verificación que muestra:
+- ✅ Conexión exitosa a la base de datos
+- ✅ Tablas creadas correctamente
+- ✅ Datos de prueba disponibles
 
-**¡Dime qué prefieres y te ayudo a implementarlo!** Tu backend ya está listo y funcionando perfectamente. 🚀✨
+### 5. Insertar Datos de Prueba (Opcional)
+
+La primera vez, el sistema puede insertar datos de prueba automáticamente. Si no:
+```
+http://localhost:8000/php/config/database.php?action=insert_sample
+```
+
+## 🔌 Configuración para Frontend
+
+Si vas a conectar con un frontend Next.js:
+
+1. **Verifica CORS** en `php/config/cors.php`:
+```php
+$allowedOrigins = [
+    'http://localhost:3000',    // Next.js development
+    'https://tu-dominio.com'    // Producción
+];
+```
+
+2. **En tu frontend**, configura la URL base:
+```javascript
+// .env.local en Next.js
+NEXT_PUBLIC_API_URL=http://localhost:8000/php/api
+```
+
+## 📚 Documentación de la API
+
+### Base URL
+```
+http://localhost:8000/php/api
+```
+
+### Endpoints Principales
+
+| Método | Endpoint | Descripción |
+|--------|----------|-------------|
+| `GET` | `/productos.php` | Listar todos los productos |
+| `GET` | `/productos.php/destacados` | Productos destacados |
+| `GET` | `/productos.php/{id}` | Obtener producto específico |
+| `POST` | `/productos.php` | Crear nuevo producto |
+| `PUT` | `/productos.php/{id}` | Actualizar producto |
+| `DELETE` | `/productos.php/{id}` | Eliminar producto |
+
+#### Ejemplos de Uso:
+
+**Obtener productos:**
+```bash
+curl -X GET "http://localhost:8000/php/api/productos.php"
+```
+
+**Crear producto:**
+```bash
+curl -X POST "http://localhost:8000/php/api/productos.php" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "nombre": "Producto Ejemplo",
+    "precio": 29.99,
+    "stock": 50,
+    "categoria_id": 1,
+    "descripcion": "Descripción del producto"
+  }'
+```
+
+### Usuarios
+
+| Método | Endpoint | Descripción |
+|--------|----------|-------------|
+| `POST` | `/usuarios.php/registro` | Registrar usuario |
+| `POST` | `/usuarios.php/login` | Iniciar sesión |
+| `GET` | `/usuarios.php/perfil/{id}` | Obtener perfil |
+| `PUT` | `/usuarios.php/{id}` | Actualizar usuario |
+
+**Ejemplo - Registro:**
+```bash
+curl -X POST "http://localhost:8000/php/api/usuarios.php/registro" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "nombre": "Juan",
+    "apellido": "Pérez",
+    "email": "juan@ejemplo.com",
+    "password": "123456",
+    "telefono": "999999999"
+  }'
+```
+
+### Carrito
+
+| Método | Endpoint | Descripción |
+|--------|----------|-------------|
+| `GET` | `/carrito.php/{usuario_id}` | Ver carrito |
+| `POST` | `/carrito.php/{usuario_id}` | Agregar producto |
+| `PUT` | `/carrito.php/{usuario_id}/{producto_id}` | Actualizar cantidad |
+| `DELETE` | `/carrito.php/{usuario_id}/{producto_id}` | Eliminar producto |
+| `DELETE` | `/carrito.php/{usuario_id}/limpiar` | Limpiar carrito |
+
+### Pedidos
+
+| Método | Endpoint | Descripción |
+|--------|----------|-------------|
+| `GET` | `/pedidos.php` | Listar pedidos |
+| `POST` | `/pedidos.php/crear` | Crear pedido desde carrito |
+| `GET` | `/pedidos.php/usuario/{id}` | Pedidos de usuario |
+| `PUT` | `/pedidos.php/{id}` | Actualizar estado |
+
+## 🧪 Pruebas
+
+### Interfaz de Pruebas Web
+Accede a: `http://localhost:8000/test_api.html`
+
+Esta interfaz permite:
+- ✅ Probar todos los endpoints
+- ✅ Ver respuestas en tiempo real
+- ✅ Simular flujos completos de usuario
+- ✅ Verificar códigos de estado HTTP
+
+### Pruebas Manuales con cURL
+
+**Flujo completo de prueba:**
+```bash
+# 1. Registrar usuario
+curl -X POST "http://localhost:8000/php/api/usuarios.php/registro" \
+  -H "Content-Type: application/json" \
+  -d '{"nombre":"Test","apellido":"User","email":"test@test.com","password":"123456"}'
+
+# 2. Hacer login
+curl -X POST "http://localhost:8000/php/api/usuarios.php/login" \
+  -H "Content-Type: application/json" \
+  -d '{"email":"test@test.com","password":"123456"}'
+
+# 3. Ver productos
+curl -X GET "http://localhost:8000/php/api/productos.php"
+
+# 4. Agregar al carrito
+curl -X POST "http://localhost:8000/php/api/carrito.php/1" \
+  -H "Content-Type: application/json" \
+  -d '{"producto_id":1,"cantidad":2}'
+
+# 5. Crear pedido
+curl -X POST "http://localhost:8000/php/api/pedidos.php/crear" \
+  -H "Content-Type: application/json" \
+  -d '{"usuario_id":1,"metodo_pago":"tarjeta","direccion_envio":"Lima, Perú"}'
+```
+
+## 🔍 Resolución de Problemas
+
+### Error: "Conexión a base de datos falló"
+- Verifica que MySQL esté ejecutándose
+- Confirma credenciales en `php/config/database.php`
+- Asegúrate de que la base de datos `allin_buy` exista
+
+### Error: "CORS policy"
+- Verifica configuración en `php/config/cors.php`
+- Asegúrate de que el frontend esté en la lista de orígenes permitidos
+
+### Error: "404 Not Found"
+- Verifica que Apache esté ejecutándose
+- Confirma la ruta correcta: `http://localhost:8000/php/api/`
+- Revisa configuración de mod_rewrite si usas Apache
+
+### Error: "500 Internal Server Error"
+- Revisa logs de PHP: `tail -f /var/log/apache2/error.log`
+- Verifica permisos de archivos
+- Confirma sintaxis PHP
+
+## 🏗️ Arquitectura del Proyecto
+
+### Patrones Utilizados
+- **REST API**: Arquitectura orientada a servicios
+- **MVC Simplificado**: Separación de lógica y datos
+- **Singleton**: Para conexión de base de datos
+- **Factory Pattern**: Para respuestas JSON estandarizadas
+
+### Seguridad Implementada
+- 🔐 **Prepared Statements**: Prevención de SQL injection
+- 🔐 **Password Hashing**: Encriptación de contraseñas
+- 🔐 **Input Validation**: Validación de datos de entrada
+- 🔐 **CORS Security**: Control de orígenes permitidos
+
+## 📊 Base de Datos
+
+### Diagrama de Entidades (Principal)
+```
+usuarios (id, nombre, email, password, ...)
+    │
+    ├── carrito (usuario_id, producto_id, cantidad)
+    │
+    └── pedidos (id, usuario_id, total, estado, ...)
+            │
+            └── pedido_detalles (pedido_id, producto_id, cantidad, precio)
+
+productos (id, nombre, precio, stock, categoria_id, ...)
+    │
+    └── categorias (id, nombre, descripcion, ...)
+```
+
+## 🤝 Contribución
+
+Si eres compañero de clase y quieres contribuir:
+
+1. Fork el proyecto
+2. Crea una rama: `git checkout -b feature/nueva-funcionalidad`
+3. Commit tus cambios: `git commit -m 'Agregar nueva funcionalidad'`
+4. Push a la rama: `git push origin feature/nueva-funcionalidad`
+5. Abre un Pull Request
+
+## 📄 Licencia
+
+Este proyecto es para fines educativos del curso de **Desarrollo de Software** en la Universidad Nacional de San Antonio Abad del Cusco (UNSAAC).
+
+## 👨‍💻 Autor
+
+**Ciro** - [ciro8014](https://github.com/ciro8014)
+- Estudiante de Ingeniería Informática y de Sistemas
+- UNSAAC - 2024
+
+## 📞 Soporte
+
+Si encuentras algún problema:
+1. Revisa la sección [Resolución de Problemas](#-resolución-de-problemas)
+2. Usa la [interfaz de pruebas](#interfaz-de-pruebas-web) para debugging
+3. Abre un issue en GitHub con detalles del error
+
+---
+
+### 🎯 Objetivos Académicos Cumplidos
+
+- ✅ **Desarrollo de Software**: API REST completa con CRUD
+- ✅ **Redes de Computadoras I**: Protocolos HTTP, CORS, cliente-servidor
+- ✅ **Bases de Datos**: Diseño normalizado, consultas optimizadas
+- ✅ **Ingeniería de Software**: Documentación, testing, patrones de diseño
+
+**¡Gracias por revisar nuestro proyecto! 🚀**
